@@ -7,6 +7,15 @@ function handleSubmitForm(dados){
   console.log(dados);
 }
 
+function validationCpf(cpf){
+  if(cpf.length !== 11){
+    return{valido: false, texto: "CPF deve ter 11 dígitos"}
+  }
+  else {
+    return{valido: true, texto: ""}
+  }
+}
+
 function App() {
   return (
     <div className="App">
@@ -14,7 +23,7 @@ function App() {
         <Typography variant="h3" align="center" component="h1" >
           Formulário de Cadastro
         </Typography>
-        <FormularioCadastro onSubmit={handleSubmitForm} />
+        <FormularioCadastro onSubmit={handleSubmitForm} validations={validationCpf} />
       </Container>
     </div>
   );
