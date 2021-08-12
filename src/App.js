@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Container component="article" maxWidth="sm">
-        <Typography variant="h3" align="center" component="h1">
+        <Typography variant="h3" align="center" component="h1" >
           Formulário de Cadastro
         </Typography>
         <FormularioCadastro />
