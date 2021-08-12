@@ -3,6 +3,10 @@ import './App.css';
 import { FormularioCadastro } from './components/FormulárioCadastro/FormularioCadastro';
 import 'fontsource-roboto'
 
+function handleSubmitForm(dados){
+  console.log(dados);
+}
+
 function App() {
   return (
     <div className="App">
@@ -10,7 +14,7 @@ function App() {
         <Typography variant="h3" align="center" component="h1" >
           Formulário de Cadastro
         </Typography>
-        <FormularioCadastro />
+        <FormularioCadastro onSubmit={handleSubmitForm} />
       </Container>
     </div>
   );
