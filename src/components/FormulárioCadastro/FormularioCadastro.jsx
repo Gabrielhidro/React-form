@@ -7,28 +7,25 @@ import { DadosUsuario } from "./DadosUsuario";
 export function FormularioCadastro({ onSubmit, validations }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
 
+  function next() {
+    setEtapaAtual(etapaAtual + 1);
+  }
+
   function formularioAtual(etapa) {
     switch (etapa) {
       case 0:
-        return <DadosUsuario />;
-    }
-    switch (etapa) {
+        return <DadosUsuario onSubmit={next} />;
+
       case 1:
-        return <DadosPessoais onSubmit={onSubmit} validations={validations} />;
-    }
-    switch (etapa) {
+        return <DadosPessoais onSubmit={next} validations={validations} />;
+
       case 2:
-        return <DadosDeEntrega />;
+        return <DadosDeEntrega onSubmit={onSubmit} />;
+
       default:
         return <Typography>Erro</Typography>;
     }
   }
 
   return <>{formularioAtual(etapaAtual)}</>;
-}
-
-{
-  /* <DadosPessoais onSubmit={onSubmit} validations={validations} />
-<DadosUsuario />
-<DadosDeEntrega /> */
 }

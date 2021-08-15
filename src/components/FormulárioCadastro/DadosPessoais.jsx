@@ -31,6 +31,7 @@ export function DadosPessoais({ onSubmit, validations }) {
         color="secondary"
         variant="outlined"
         margin="dense"
+        required
         fullWidth
       />
 
@@ -42,6 +43,7 @@ export function DadosPessoais({ onSubmit, validations }) {
         color="secondary"
         variant="outlined"
         margin="dense"
+        required
         fullWidth
       />
 
@@ -59,6 +61,7 @@ export function DadosPessoais({ onSubmit, validations }) {
         color="secondary"
         variant="outlined"
         margin="dense"
+        required
         fullWidth
       />
 

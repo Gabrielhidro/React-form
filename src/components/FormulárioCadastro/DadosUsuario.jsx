@@ -1,8 +1,13 @@
 import { Button, TextField } from "@material-ui/core";
 
-export function DadosUsuario() {
+export function DadosUsuario({ onSubmit }) {
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit();
+      }}
+    >
       <TextField
         id="email"
         label="email"
@@ -10,6 +15,7 @@ export function DadosUsuario() {
         color="secondary"
         variant="outlined"
         margin="dense"
+        required
         fullWidth
       />
       <TextField
@@ -19,6 +25,7 @@ export function DadosUsuario() {
         color="secondary"
         variant="outlined"
         margin="dense"
+        required
         fullWidth
       />
 
