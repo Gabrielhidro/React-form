@@ -11,7 +11,6 @@ export function DadosDeEntrega() {
         color="secondary"
         variant="outlined"
         margin="dense"
-        fullWidth
       />
 
       <TextField
