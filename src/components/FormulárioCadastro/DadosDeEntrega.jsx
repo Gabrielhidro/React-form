@@ -67,7 +67,7 @@ export function DadosDeEntrega() {
         fullWidth
       />
 
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="contained" color="primary" fullWidth>
         Finalizar Cadrasto
       </Button>
     </form>

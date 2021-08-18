@@ -9,6 +9,13 @@ export function DadosPessoais({ onSubmit, validations }) {
   const [novidades, setNovidades] = useState(true);
   const [error, setError] = useState({ cpf: { valido: true, texto: "" } });
 
+  function validarCampos(event){
+    const {name, value} = event.target;
+    const novoEstado = {...error}
+    novoEstado[name] = validations[name](value);
+    setError(novoEstado);
+  }
+
   return (
     <form
       onSubmit={(e) => {
@@ -49,15 +56,13 @@ export function DadosPessoais({ onSubmit, validations }) {
 
       <TextField
         onChange={(e) => setCpf(e.target.value)}
-        onBlur={(e) => {
-          const isValid = validations(e.target.value);
-          setError({ cpf: isValid });
-        }}
+        onBlur={validarCampos}
         value={cpf}
         error={!error.cpf.valido}
         helperText={error.cpf.texto}
         label="CPF"
         id="cpf"
+        name="cpf"
         color="secondary"
         variant="outlined"
         margin="dense"
