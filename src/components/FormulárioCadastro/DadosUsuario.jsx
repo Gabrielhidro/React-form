@@ -1,13 +1,15 @@
 import { Button, TextField } from "@material-ui/core";
+import { useContext } from "react";
 import { useState } from "react";
+import { validationsForm } from "../../contexts/validationsForm";
 
-export function DadosUsuario({ onSubmit, validations }) {
+export function DadosUsuario({ onSubmit }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
   const [error, setError] = useState({ senha: { valido: true, texto: "" } });
 
 
+  const validations = useContext(validationsForm)
   function validarCampos(event){
     const {name, value} = event.target;
     const novoEstado = {...error}

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Button, FormControlLabel, Switch, TextField } from "@material-ui/core";
+import { useContext } from "react";
+import { validationsForm } from "../../contexts/validationsForm";
 
-export function DadosPessoais({ onSubmit, validations }) {
+export function DadosPessoais({ onSubmit }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState();
   const [promo, setPromo] = useState(true);
   const [novidades, setNovidades] = useState(true);
   const [error, setError] = useState({ cpf: { valido: true, texto: "" } });
+
+  const validations = useContext(validationsForm)
 
   function validarCampos(event){
     const {name, value} = event.target;
