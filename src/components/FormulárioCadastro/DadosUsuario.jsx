@@ -1,15 +1,38 @@
 import { Button, TextField } from "@material-ui/core";
 import { useState } from "react";
 
-export function DadosUsuario({ onSubmit }) {
+export function DadosUsuario({ onSubmit, validations }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const [error, setError] = useState({ senha: { valido: true, texto: "" } });
+
+
+  function validarCampos(event){
+    const {name, value} = event.target;
+    const novoEstado = {...error}
+    novoEstado[name] = validations[name](value);
+    setError(novoEstado);
+  }
+
+  function possoEnviar(){
+    for(let campo in error){
+      if(!error[campo].valido){
+        return false
+      }
+    }
+    return true
+  }
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmit({ email, senha });
+
+        if(possoEnviar()){
+          onSubmit({ email, senha });
+        }
+        
       }}
     >
       <TextField
@@ -18,6 +41,7 @@ export function DadosUsuario({ onSubmit }) {
         id="email"
         label="email"
         type="email"
+        name="email"
         color="secondary"
         variant="outlined"
         margin="dense"
@@ -25,10 +49,14 @@ export function DadosUsuario({ onSubmit }) {
         fullWidth
       />
       <TextField
+        onBlur={validarCampos}
+        error={!error.senha.valido}
+        helperText={error.senha.texto}
         value={senha}
         onChange={(e) => setSenha(e.target.value)}
         id="senha"
         label="senha"
+        name="senha"
         type="password"
         color="secondary"
         variant="outlined"
@@ -38,7 +66,7 @@ export function DadosUsuario({ onSubmit }) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+        Próximo
       </Button>
     </form>
   );

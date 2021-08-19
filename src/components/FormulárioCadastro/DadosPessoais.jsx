@@ -16,18 +16,28 @@ export function DadosPessoais({ onSubmit, validations }) {
     setError(novoEstado);
   }
 
+  function possoEnviar(){
+    for(let campo in error){
+      if(!error[campo].valido){
+        return false
+      }
+    }
+    return true
+  }
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-
-        onSubmit({
-          nome,
-          sobrenome,
-          cpf,
-          novidades,
-          promo,
-        });
+        if(possoEnviar()){
+          onSubmit({
+            nome,
+            sobrenome,
+            cpf,
+            novidades,
+            promo,
+          });
+        }
       }}
     >
       <TextField
@@ -35,6 +45,7 @@ export function DadosPessoais({ onSubmit, validations }) {
         value={nome}
         label="Nome"
         id="nome"
+        name="nome"
         color="secondary"
         variant="outlined"
         margin="dense"
@@ -47,6 +58,7 @@ export function DadosPessoais({ onSubmit, validations }) {
         value={sobrenome}
         label="Sobrenome"
         id="sobrenome"
+        name="sobrenome"
         color="secondary"
         variant="outlined"
         margin="dense"
@@ -84,7 +96,7 @@ export function DadosPessoais({ onSubmit, validations }) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+        Próximo
       </Button>
     </form>
   );
